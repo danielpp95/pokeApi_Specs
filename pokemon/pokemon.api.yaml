@@ -1,0 +1,151 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Pokemon API
+  version: v1
+paths:
+  '/v1/pokemons/{id}':
+    get:
+      tags:
+        - Pokemon
+      summary: Get a Pokemon based on a identifier.
+      operationId: Pokemon_Get
+      parameters:
+        - name: id
+          in: path
+          description: Pokemon identifier
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pokemon'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '404':
+          description: Not Found
+        "500":
+          description: Internar Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+    post:
+      tags:
+        - Pokemon
+      summary: Creates a Pokemon.
+      operationId: Pokemon_Post
+      requestBody:
+        description: 'Pokemon to save'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pokemon'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              description: '/products/{id}/duplicateAssociations'
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+    put:
+      tags:
+        - Pokemon
+      summary: Updates a Pokemon
+      operationId: Pokemon_Put
+      requestBody:
+        description: 'Pokemon to save'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pokemon'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              description: '/products/{id}/duplicateAssociations'
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+      
+components:
+  schemas:
+    Pokemon:
+      $ref: 'components/schemas/pokemon.yaml#/components/schemas/pokemon'
+    applicationErrorCollection:
+      $ref: '../shared-components/schemas/applicationErrorCollection.yaml#/components/schemas/applicationErrorCollection'
