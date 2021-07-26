@@ -1,0 +1,28 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite v1 - Page_Pokemon
+  version: v1
+paths: {}
+components:
+  schemas:
+    pagePokemon:
+      type: object
+      required:
+        - number
+        - totalPages
+        - totalItems
+        - entries
+      properties:
+        number:
+          type: integer
+          format: int32
+        totalItems:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+        entries:
+          type: array
+          items:
+            $ref: "pokemon.yaml#/components/schemas/pokemon"

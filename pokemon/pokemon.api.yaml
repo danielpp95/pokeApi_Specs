@@ -142,10 +142,66 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/applicationErrorCollection'
-      
+  '/v1/pokemons':
+    get:
+      tags:
+       - Pokemon
+      summary: Get a page of pokemons based on parameters.
+      operationId: Pokemon_GetAll
+      parameters:
+        - name: page
+          in: query
+          description: Page Number. If it's null the default value is 1
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pageSize
+          in: query
+          description: Page Size. If it's null the default value is 60
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page_Pokemon'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+        '404':
+          description: Not Found
+        "500":
+          description: Internar Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applicationErrorCollection'
+    
 components:
   schemas:
     Pokemon:
       $ref: 'components/schemas/pokemon.yaml#/components/schemas/pokemon'
+    Page_Pokemon:
+      $ref: 'components/schemas/page_pokemon.yaml#/components/schemas/pagePokemon'
     applicationErrorCollection:
       $ref: '../shared-components/schemas/applicationErrorCollection.yaml#/components/schemas/applicationErrorCollection'
