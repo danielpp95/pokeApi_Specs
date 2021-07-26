@@ -1,0 +1,33 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Pokemon Stats
+  version: v1
+paths: {}
+components:
+  schemas:
+    pokemonStats:
+      required:
+        - parentProductId
+      type: object
+      properties:
+        offense:
+          type: number
+          format: float
+          description: Offense value.
+        endurance:
+          type: number
+          format: float
+          description: endurance value.
+        mobility:
+          type: number
+          format: float
+          description: mobility value.
+        scoring:
+          type: number
+          format: float
+          description: scoring value.
+        support:
+          type: number
+          format: float
+          description: support value.
+        

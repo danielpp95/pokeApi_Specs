@@ -1,0 +1,47 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Pokemon Moves
+  version: v1
+paths: {}
+components:
+  schemas:
+    PokemonMoves:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pokemon identifier.
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Pokemon name.
+        description:
+          type: string
+          description: Pokemon description.
+        cooldown:
+          type: integer
+          format: int32
+          description: cool-down time in seconds
+        attribute:
+          type: array
+          items:
+            type: string
+        unlockAtLevel:
+          type: integer
+          format: int32
+        updatedDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        createdDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        digitalAssets:
+          type: array
+          items:
+            type: string
+            format: uri

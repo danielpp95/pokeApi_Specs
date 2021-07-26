@@ -1,0 +1,36 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Pokemon Evolution
+  version: v1
+paths: {}
+components:
+  schemas:
+    pokemonEvolution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pokemon identifier.
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Pokemon name.
+        description:
+          type: string
+          description: Pokemon description.
+        evolutionLevel:
+          type: integer
+          description: 'Page size number.'
+          format: int32
+        updatedDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        createdDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        

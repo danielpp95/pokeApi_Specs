@@ -1,0 +1,89 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Pokemon
+  version: v1
+paths: {}
+components:
+  schemas:
+    pokemon:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pokemon identifier.
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Pokemon name.
+        description:
+          type: string
+          description: Pokemon description.
+        moveset:
+          type: array
+          items:
+            type: string
+            format: uuid
+            description: Move unique identifier
+        evolutions:
+          type: array
+          items:
+            $ref: 'pokemon.evolution.yaml#/components/schemas/pokemonEvolution'
+        type:
+          type: string
+          enum:
+            - Attacker
+            - Defender
+            - All-Rounder
+            - Speedster
+            - Supporter
+        range:
+          type: string
+          enum:
+            - Melee
+            - Ranged
+        difficulty:
+          type: string
+          enum:
+            - Novice
+            - Intermediate
+            - Expert
+        updatedDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        createdDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        digitalAssets:
+          type: array
+          items:
+            type: string
+            format: uri
+        Stats:
+          $ref: 'pokemon.stats.yaml#/components/schemas/pokemonStats'
+        skins:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              digitalAssets:
+                type: array
+                items:
+                  type: string
+                  format: uri
+              price:
+                type: integer
+                format: int32
+              coin:
+                type: string
+                enum:
+                 - Aeos gems
+                 - Aeos coins
+                 - Aeos tickets
+                 - Holowear ticket

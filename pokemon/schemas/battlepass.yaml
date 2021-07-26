@@ -1,0 +1,46 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Battlepass
+  version: v1
+paths: {}
+components:
+  schemas:
+    battlepass:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pokemon identifier.
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Pokemon name.
+        startDate:
+          type: string
+          format: date-time
+        endtDate:
+          type: string
+          format: date-time
+        levels:
+          type: array
+          items:
+            type: object
+            properties:
+              reward:
+                $ref: 'item.yaml#/components/schemas/item'
+              level:
+                type: integer
+              quantity:
+                type: integer
+                format: int32
+        updatedDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        createdDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true

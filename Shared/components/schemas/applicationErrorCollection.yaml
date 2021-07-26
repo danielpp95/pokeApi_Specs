@@ -1,0 +1,16 @@
+openapi: 3.0.1
+info:
+  title: 'Pokemon Unite API v1 - ApplicationErrorCollection'
+  version: v1
+paths: {}
+components:
+  schemas:
+    applicationErrorCollection:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: 'applicationError.yaml#/components/schemas/applicationError'
+          description: List of errors.
+      description: Error that the endpoint returns.

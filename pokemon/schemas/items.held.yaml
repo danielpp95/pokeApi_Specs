@@ -1,0 +1,80 @@
+openapi: 3.0.2
+info:
+  title: Pokemon Unite API v1 - Item Held
+  version: v1
+paths: {}
+components:
+  schemas:
+    itemHeld:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pokemon identifier.
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Pokemon name.
+        digitalAssets:
+          type: array
+          items:
+            type: string
+            format: uri
+        updatedDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        createdDate:
+          type: string
+          description: The date when the pokemon was last updated (UTC).
+          format: date-time
+          readOnly: true
+        grade:
+          type: integer
+          format: int32
+        upgradeEffects:
+          type: array
+          items:
+            type: object
+            properties:
+              digitalAssets:
+                type: string
+                format: uri
+              level:
+                type: integer
+                format: int32
+              title:
+                type: string
+              description:
+                type: string
+        effects:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              effect:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    level:
+                      type: integer
+                      format: int32
+                    value:
+                      type: string
+                    upgradeCost:
+                      type: integer
+                      format: int32
+        attributes:
+          type: array
+          items:
+            type: string
+            enum:
+              - Score
+              - Attack
+              - Defense
+              - Other
