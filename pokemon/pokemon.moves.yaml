@@ -3,16 +3,16 @@ info:
   title: Pokemon Unite API v1 - Pokemon API
   version: v1
 paths:
-  '/v1/pokemons/{id}':
+  '/v1/pokemons/moves/{id}':
     get:
       tags:
-        - Pokemon
-      summary: Get a Pokemon based on a identifier.
-      operationId: Pokemon_Get
+        - PokemonMoves
+      summary: Get a Pokemon move based on a identifier.
+      operationId: PokemonMove_Get
       parameters:
         - name: id
           in: path
-          description: Pokemon identifier
+          description: Pokemon move identifier
           required: true
           schema:
             type: string
@@ -23,7 +23,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pokemon'
+                $ref: '#/components/schemas/PokemonMove'
         "400":
           description: Bad Request
           content:
@@ -52,22 +52,22 @@ paths:
                 $ref: '#/components/schemas/applicationErrorCollection'
     post:
       tags:
-        - Pokemon
-      summary: Creates a Pokemon.
-      operationId: Pokemon_Post
+        - PokemonMoves
+      summary: Creates a Pokemon move.
+      operationId: PokemonMove_Post
       requestBody:
-        description: 'Pokemon to save'
+        description: 'Pokemon move to save'
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pokemon'
+              $ref: '#/components/schemas/PokemonMove'
         required: true
       responses:
         '201':
           description: Created
           headers:
             Location:
-              description: '/pokemons/{id}'
+              description: '/pokemons/moves/{id}'
               schema:
                 type: string
         '400':
@@ -99,14 +99,14 @@ paths:
     put:
       tags:
         - Pokemon
-      summary: Updates a Pokemon
-      operationId: Pokemon_Put
+      summary: Updates a Pokemon move
+      operationId: PokemonMove_Put
       requestBody:
-        description: 'Pokemon to save'
+        description: 'Pokemon move to save'
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pokemon'
+              $ref: '#/components/schemas/PokemonMove'
         required: true
       responses:
         '204':
@@ -137,12 +137,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/applicationErrorCollection'
-  '/v1/pokemons':
+  '/v1/pokemons/moves':
     get:
       tags:
-       - Pokemon
-      summary: Get a page of pokemons based on parameters.
-      operationId: Pokemon_GetAll
+       - PokemonMove
+      summary: Get a page of pokemons moves based on parameters.
+      operationId: PokemonMove_GetAll
       parameters:
         - name: page
           in: query
@@ -164,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page_Pokemon'
+                $ref: '#/components/schemas/Page_PokemonMoves'
         "400":
           description: Bad Request
           content:
@@ -194,9 +194,9 @@ paths:
     
 components:
   schemas:
-    Pokemon:
-      $ref: 'components/schemas/pokemon.yaml#/components/schemas/pokemon'
-    Page_Pokemon:
-      $ref: 'components/schemas/page_pokemon.yaml#/components/schemas/pagePokemon'
+    PokemonMove:
+      $ref: 'components/schemas/pokemon.move.yaml#/components/schemas/pokemonMove'
+    Page_PokemonMoves:
+      $ref: 'components/schemas/page_pokemonMoves.yaml#/components/schemas/pagePokemonMoves'
     applicationErrorCollection:
       $ref: '../shared-components/schemas/applicationErrorCollection.yaml#/components/schemas/applicationErrorCollection'
